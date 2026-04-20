@@ -1,0 +1,4 @@
+neo4j>=5.0,<6.0
+click>=8.0
+fastapi>=0.110
+uvicorn[standard]>=0.29
