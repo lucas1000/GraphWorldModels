@@ -136,9 +136,9 @@ To summarise then, the agent imagines the outcome of each possible action, runs 
 
 ### Details
 
-$T(s' \mid s, a)$ — the transition function. "If I'm in state $s$ and take action $a$, what's the probability of ending up in state $s'$?" Derived from `visit_count` on TRANSITION edges:
+$T(s' \mid s, a)$ — the transition function. "If I'm in state $s$ and take action $a$, what's the probability of ending up in state $s'$?" Derived from `visit_count` on TRANSITION edges (let $N(s, a, s')$ denote that count):
 
-$$p(s') = \frac{\text{visit\_count}(s, a, s')}{\sum_{s''} \text{visit\_count}(s, a, s'')}$$
+$$p(s') = \frac{N(s, a, s')}{\sum_{s''} N(s, a, s'')}$$
 
 $R(s, a)$ — the reward function. "If I'm in state $s$ and take action $a$, what reward do I expect?" Stored as `r_mean` on each TRANSITION edge.
 
@@ -171,7 +171,7 @@ $$G = r_0 + \gamma \, r_1 + \gamma^2 \, r_2 + \gamma^3 \, r_3 + \gamma^4 \, r_4$
 
 with $\gamma = 0.95$ and horizon $= 5$ hops,
 
-so, rollouts sample from a learned $\hat{T}(s' \mid s, a)$ and $\hat{R} = \text{r\_mean}$,
+so, rollouts sample from a learned $\hat{T}(s' \mid s, a)$ and $\hat{R} = \bar{r}(s, a)$ (the `r_mean` stored on each edge),
 
 with step 0 being a sample of the first transition,
 
